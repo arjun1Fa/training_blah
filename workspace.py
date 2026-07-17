@@ -1,24 +1,21 @@
-num_list = []
+n = int(input("Enter the number of words: "))
 
-# Input 10 numbers
-for i in range(10):
-    num = int(input("Enter number " + str(i + 1) + ": "))
-    num_list.append(num)
+words = []
 
-# Delete negative numbers using del
-for i in range(len(num_list) - 1, -1, -1):
-    if num_list[i] < 0:
-        print(num_list[i], "was deleted")
-        del num_list[i]
+for i in range(n):
+    word = input("Enter word: ")
+    words.append(word)
 
-# Pop the last 3 numbers (if available)
-for i in range(min(3, len(num_list))):
-    print("Popped:", num_list.pop())
+groups = {}
 
-print("Current list:", num_list)
+for word in words:
+    key = "".join(sorted(word))
 
-# Clear the list if it has more than 5 elements
-if len(num_list) > 5:
-    num_list.clear()
+    if key not in groups:
+        groups[key] = []
 
-print("Final list:", num_list)
+    groups[key].append(word)
+
+print("\nAnagram Groups:")
+for group in groups.values():
+    print(group)
